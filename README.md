@@ -1,49 +1,54 @@
-# 🎓 INTRODUCCIÓN A LA PROGRAMACIÓN Y COMPUTACIÓN 1
+﻿# INTRODUCCION A LA PROGRAMACION Y COMPUTACION 1
 ## Curso 0770
 
 ---
 
-## 🎯 Bienvenido
+## Bienvenido
 
-Bienvenido al repositorio oficial del curso **Introducción a la Programación y Computación 1**. Aquí encontrarás todos los ejemplos y ejercicios que se desarrollan semana a semana durante el período de clase.
+Bienvenido al repositorio oficial del curso **Introduccion a la Programacion y Computacion 1**.
+Aqui encontraras ejemplos y ejercicios que se trabajan durante el semestre.
 
-### ✨ Características de este repositorio:
+## Estructura Del Repositorio
 
-- 📚 **Ejemplos progresivos**: Ejemplos ordenados semana tras semana
-- 📖 **Documentación detallada**: README's en cada ejemplo explicando el funcionamiento
-- 💡 **Código comentado**: Código bien estructurado y fácil de entender
-- 🔧 **Práctico**: Enfoque hands-on para el aprendizaje
-
----
-
-## 📂 Estructura del Repositorio
-
-```
-├── README.md                    (Este archivo)
-├── PacmanTablero/              (Ejemplos de programación)
-│   ├── src/
-│   │   └── TableroPacman.java
-│   └── PacmanTablero.iml
-└── ... (más ejemplos por venir)
+```text
+IPC1B_1S2026_Ejemplos/
+|- README.md
+|- PacmanTablero/
+|  |- src/
+|  |  |- TableroPacman.java
+|- SistemaInventarioIPC1/
+|  |- README.md
+|  |- src/
+|  |- pom.xml
 ```
 
----
+## Ejemplos Disponibles
 
-## 📝 Cómo usar este repositorio
+### 1. PacmanTablero
 
-1. **Explora los ejemplos**: Cada carpeta contiene un proyecto diferente
-2. **Lee la documentación**: Busca el README.md en cada ejemplo para entender mejor
-3. **Estudia el código**: Analiza el código comentado para aprender
-4. **Experimenta**: Modifica y prueba los ejemplos
+- Carpeta: `PacmanTablero/`
+- Archivo principal: `src/TableroPacman.java`
+- Objetivo: practicar interfaces graficas y logica de tablero con Java.
+- Documentación: `TableroPacman/README.md`
 
----
+### 2. SistemaInventarioIPC1 
 
-## 👨‍💼 Autor
+- Carpeta: `SistemaInventarioIPC1/`
+- Tipo de proyecto: Java + Maven + Swing.
+- Objetivo: practicar POO y patron MVC (Modelo, Vista, Controlador) con un inventario.
+- Documentacion del ejemplo: `SistemaInventarioIPC1/README.md`
 
-**Fernando José Vicente Velásquez**
+## Como Usar Este Repositorio
 
----
+1. Explora cada carpeta de ejemplo.
+2. Lee el `README.md` de cada proyecto antes de ejecutar.
+3. Revisa el codigo fuente y prueba cambios pequenos.
+4. Ejecuta los ejemplos desde tu IDE (NetBeans o IntelliJ) o por linea de comandos si aplica.
 
-## 📅 Curso: 2026 Semestre 1
+## Autor
 
-*Última actualización: Febrero 2026*
+**Fernando Jose Vicente Velasquez**
+
+## Curso: 2026 Semestre 1
+
+Ultima actualizacion: 26 de febrero de 2026
