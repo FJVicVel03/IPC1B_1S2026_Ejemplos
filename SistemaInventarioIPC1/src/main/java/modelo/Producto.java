@@ -14,6 +14,8 @@ public abstract class Producto {
     }
 
     public abstract String obtenerDetalles();
+
+    public abstract int getCodigo();
 }
 
 //Clases hijas
@@ -28,8 +30,12 @@ class Camisa extends Producto {
 
     @Override
     public String obtenerDetalles() {
-        return "Camisa - Código: " + codigo + ", Nombre: " + nombre + ", Precio: " + precio + ", Cantidad: " + cantidad + ", Talla: " + talla;
+        return "Camisa - Código: " + codigo + ", Nombre: " + nombre + ", Precio: $" + precio + ", Cantidad: " + cantidad + ", Talla: " + talla;
     }
+        @Override
+    public int getCodigo() {
+            return codigo;
+        }
 }
 class Accesorio extends Producto {
     private String tipo;
@@ -41,8 +47,12 @@ class Accesorio extends Producto {
 
     @Override
     public String obtenerDetalles() {
-        return "Accesorio - Código: " + codigo + ", Nombre: " + nombre + ", Precio: " + precio + ", Cantidad: " + cantidad + ", Tipo: " + tipo;
+        return "Accesorio  - Codigo: " + codigo + ", Nombre: " + nombre + ", Precio: $" + precio + ", Cantidad: " + cantidad + ", Tipo: " + tipo;
     }
+        @Override
+    public int getCodigo() {
+        return  codigo;
+        }
 }
 
 //Clase gestora de inventario

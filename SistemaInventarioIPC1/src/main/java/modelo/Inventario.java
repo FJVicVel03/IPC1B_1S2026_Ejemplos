@@ -33,4 +33,5 @@ public class Inventario{
     public int getContadorProductos() {
         return contadorProductos;
     }
+
 }

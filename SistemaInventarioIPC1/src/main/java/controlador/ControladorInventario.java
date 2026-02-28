@@ -50,6 +50,39 @@ public class ControladorInventario {
         vista.btnSalir.addActionListener((evento) -> {
             System.exit(0);
         });
+
+        vista.btnBuscarProducto.addActionListener((evento) -> {
+            String codigoStr = JOptionPane.showInputDialog(vista, "Ingrese el código del producto a buscar:");
+            if(codigoStr != null) {
+                try {
+                    int codigo = Integer.parseInt(codigoStr);
+                    Producto[] productos = inventario.getProductos();
+                    boolean encontrado = false;
+                    for(int i = 0; i < inventario.getContadorProductos(); i++) {
+                        if(productos[i].getCodigo() == codigo) {
+                            JOptionPane.showMessageDialog(vista, "Producto encontrado:\n" + productos[i].obtenerDetalles());
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if(!encontrado) {
+                        JOptionPane.showMessageDialog(vista, "Producto no encontrado.");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(vista, "Código inválido. Por favor ingrese un número.");
+                }
+            }
+        });
+        vista.btnGenerarReporte.addActionListener((evento) -> {
+           StringBuilder reporte = new StringBuilder("Reporte:\n");
+              Producto[] productos = inventario.getProductos();
+              reporte = new StringBuilder("<html><body><h1>Reporte de Inventario</h1><ul>");
+              for(int i = 0; i < inventario.getContadorProductos(); i++)              {
+                  reporte.append("<li>").append(productos[i].obtenerDetalles()).append("</li>");
+              }
+              reporte.append("</ul></body></html>");
+              JOptionPane.showMessageDialog(vista, reporte.toString());
+        });
     }
     public void iniciar() {
         vista.setVisible(true);
