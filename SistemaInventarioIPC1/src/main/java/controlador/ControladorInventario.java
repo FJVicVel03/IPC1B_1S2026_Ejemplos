@@ -6,10 +6,6 @@ import vista.VistaInventario;
 
 import javax.swing.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 public class ControladorInventario {
 
     private VistaInventario vista;
@@ -63,7 +59,7 @@ public class ControladorInventario {
                     Producto[] productos = inventario.getProductos();
                     boolean encontrado = false;
                     for(int i = 0; i < inventario.getContadorProductos(); i++) {
-                        if(productos[i].getCodigo().equalsIgnoreCase(String.valueOf(codigo))) {
+                        if(productos[i].getCodigo() == codigo) {
                             JOptionPane.showMessageDialog(vista, "Producto encontrado:\n" + productos[i].obtenerDetalles());
                             encontrado = true;
                             break;
@@ -78,30 +74,14 @@ public class ControladorInventario {
             }
         });
         vista.btnGenerarReporte.addActionListener((evento) -> {
-            StringBuilder reporte = new StringBuilder("Reporte:\n");
-            try
-            {
-                Producto[] productos = inventario.getProductos();
-                //Ordenar Productos con QuickSort
-
-
-
-                reporte = new StringBuilder("<html><body><h1>Reporte de Inventario</h1><ul>");
-                for(int i = 0; i < inventario.getContadorProductos(); i++)              {
-                    reporte.append("<li>").append(productos[i].obtenerDetalles()).append("</li>");
-                }
-                reporte.append("</ul></body></html>");
-                String rutaArchivo = "reportes/reporte_inventario.html";
-
-                FileOutputStream fos = new FileOutputStream(new File(rutaArchivo));
-                fos.write(reporte.toString().getBytes());
-                fos.close();
-                JOptionPane.showMessageDialog(vista, "Reporte generado exitosamente en: " + rutaArchivo);
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(vista, "Error al generar el reporte: " + e.getMessage());
-            } catch (NullPointerException e) {
-                JOptionPane.showMessageDialog(vista, "Error al generar el reporte: " + e.getMessage());
-            }
+           StringBuilder reporte = new StringBuilder("Reporte:\n");
+              Producto[] productos = inventario.getProductos();
+              reporte = new StringBuilder("<html><body><h1>Reporte de Inventario</h1><ul>");
+              for(int i = 0; i < inventario.getContadorProductos(); i++)              {
+                  reporte.append("<li>").append(productos[i].obtenerDetalles()).append("</li>");
+              }
+              reporte.append("</ul></body></html>");
+              JOptionPane.showMessageDialog(vista, reporte.toString());
         });
     }
     public void iniciar() {
