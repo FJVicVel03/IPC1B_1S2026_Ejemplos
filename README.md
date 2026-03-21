@@ -38,6 +38,11 @@ IPC1B_1S2026_Ejemplos/
 - Objetivo: practicar POO y patron MVC (Modelo, Vista, Controlador) con un inventario.
 - Documentacion del ejemplo: `SistemaInventarioIPC1/README.md`
 
+### 3. Snake (Práctica del Aux)
+- Carpeta `SnakeP2/`
+- Tipo de proyecto: Java + Maven + Swing
+- Objetivo: que los estudiantes puedan ver un ejemplo completo de hilos.
+
 ## Como Usar Este Repositorio
 
 1. Explora cada carpeta de ejemplo.

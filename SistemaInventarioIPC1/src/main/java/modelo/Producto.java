@@ -1,13 +1,13 @@
 package modelo;
 
 public abstract class Producto {
-    protected int codigo;
+    protected String codigo;
     protected String nombre;
     protected double precio;
     protected int cantidad;
 
-    public Producto(int codigo, String nombre, double precio, int cantidad) {
-        this.codigo = codigo;
+    public Producto(String codigo, String nombre, double precio, int cantidad) {
+        this.codigo = codigoUnico();
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -15,7 +15,9 @@ public abstract class Producto {
 
     public abstract String obtenerDetalles();
 
-    public abstract int getCodigo();
+    public abstract String getCodigo();
+
+    public abstract String codigoUnico(); //Por Ejemplo A128
 }
 
 //Clases hijas
@@ -23,7 +25,7 @@ public abstract class Producto {
 class Camisa extends Producto {
     private String talla;
 
-    public Camisa(int codigo, String nombre, double precio, int cantidad, String talla) {
+    public Camisa(String codigo, String nombre, double precio, int cantidad, String talla) {
         super(codigo, nombre, precio, cantidad);
         this.talla = talla;
     }
@@ -33,14 +35,23 @@ class Camisa extends Producto {
         return "Camisa - Código: " + codigo + ", Nombre: " + nombre + ", Precio: $" + precio + ", Cantidad: " + cantidad + ", Talla: " + talla;
     }
         @Override
-    public int getCodigo() {
+    public String getCodigo() {
             return codigo;
+        }
+        @Override
+    public String codigoUnico()
+        {
+            //Vector con las letras del abecedario mayúsculas
+            int numeroRandom = (int) (Math.random() * 1000); // Genera un número aleatorio entre 0 y 999
+            char letra = (char) ('A' + (numeroRandom % 26)); // Genera una letra basada en el código
+            return letra + String.valueOf(numeroRandom); // Combina la letra con el código para
+
         }
 }
 class Accesorio extends Producto {
     private String tipo;
 
-    public Accesorio(int codigo, String nombre, double precio, int cantidad, String tipo) {
+    public Accesorio(String codigo, String nombre, double precio, int cantidad, String tipo) {
         super(codigo, nombre, precio, cantidad);
         this.tipo = tipo;
     }
@@ -50,9 +61,18 @@ class Accesorio extends Producto {
         return "Accesorio  - Codigo: " + codigo + ", Nombre: " + nombre + ", Precio: $" + precio + ", Cantidad: " + cantidad + ", Tipo: " + tipo;
     }
         @Override
-    public int getCodigo() {
+    public String getCodigo() {
         return  codigo;
         }
+    @Override
+    public String codigoUnico()
+    {
+        //Vector con las letras del abecedario mayúsculas
+        int numeroRandom = (int) (Math.random() * 1000);
+        char letra = (char) ('A' + (numeroRandom % 26)); // Genera una letra basada en el código
+        return letra + String.valueOf(numeroRandom); // Combina la letra con el código para
+
+    }
 }
 
 //Clase gestora de inventario
