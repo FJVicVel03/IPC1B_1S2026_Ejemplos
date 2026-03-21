@@ -2,51 +2,47 @@ package Modelo;
 
 import javax.swing.*;
 
-public class Corredor implements Runnable{
+public class Corredor implements Runnable {
+
     private String nombre;
     private int posicionX;
     private int posicionY;
-    private int tiempoDescanso; //Esto debe ser en misilegundos (1000, 2000)
+    private int tiempoDescanso;
     private boolean enCarrera;
-    //debemos tener una referencia a un actualizador para que repinte la vista
+
     private Runnable onMove;
 
-    public Corredor(String nombre, int tiempoDescanso, int posicionY, Runnable onMove) {
+
+    public Corredor(String nombre, int tiempoDescanso, int posicionY,int posicionX, Runnable onMove) {
         this.nombre = nombre;
-        this.posicionX = 20; // POsición inicial
-        this.posicionY = posicionY;
         this.tiempoDescanso = tiempoDescanso;
-        this.enCarrera = true;
+        this.posicionX = posicionX; // Posición inicial en X
+        this.posicionY = posicionY; // Posición en Y para cada corredor
         this.onMove = onMove;
+        this.enCarrera = true;
     }
-
-
 
     @Override
-    public void run()
-    {
-        while(enCarrera && posicionX < 600)
-        {
-            posicionX += 5; //avanza 20 pixeles
-
-            if(onMove != null)
-            {
+    public void run() {
+        while(enCarrera && posicionX < 500){
+            posicionX += 5; // Avanza 5 unidades en cada iteración
+            if(onMove != null){
                 onMove.run();
             }
+
             try
             {
-                //Dormir el hilo según el modelo de la escoba que utilizaremos
                 Thread.sleep(tiempoDescanso);
-            } catch (InterruptedException e) {
-                JOptionPane.showMessageDialog(null, "Error en Corredor");
+
+            }catch(InterruptedException e)
+            {
+                JOptionPane.showMessageDialog(null, "Error en el Thread");
             }
+
         }
-
-
 
     }
 
-    //Encapsulamiento
     public String getNombre() {
         return nombre;
     }
@@ -58,5 +54,5 @@ public class Corredor implements Runnable{
     public int getPosicionY() {
         return posicionY;
     }
-
 }
+

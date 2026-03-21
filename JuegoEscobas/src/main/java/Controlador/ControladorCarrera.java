@@ -1,65 +1,83 @@
 package Controlador;
 
 import Modelo.Corredor;
+import Modelo.Premios;
 import Vista.PanelPista;
+import java.util.Random;
 
-import java.awt.*;
 
 public class ControladorCarrera {
     private PanelPista panel;
     private Corredor jugador;
     private Corredor computadora;
+    private Premios premios;
+    private Random rand = new Random();
 
+    int numero = rand.nextInt(2);
+    int posX_aleatoria = rand.nextInt(200);
 
-    // Constructor que solo recibe la pista
-    public ControladorCarrera(PanelPista pista)
-    {
-        this.panel = pista;
+    //Constructor que solo recibe la pista
+
+    public ControladorCarrera(PanelPista panel) {
+        this.panel = panel;
     }
 
     public void PrepararCarrera()
     {
-        //Haremos una expresión lambda para repintar el panel cada vez que un corredor se mueva
         Runnable repintarVista = () -> panel.repaint();
 
-        //Inicializamos los modelos
-        //Jugador: Saeta de Fuego (1000 ms) . Computadora: Nimbus 2001 (200ms)
-        jugador = new Corredor("Saeta de Fuego", 1000, 50, repintarVista);
-        computadora = new Corredor("Nimbus 2001", 2000, 150, repintarVista);
+        //Inicializar los modelos
+        jugador = new Corredor("Fernando", 1000, 50,15,  repintarVista);
+        computadora = new Corredor("Chatio", 2000, 150,30, repintarVista );
 
-        //Pasamos estos modelos a la vista
+        //Llammamos a los premios
+        if(numero == 0)
+        {
+            premios = new Premios("Premio 1", 3000, posX_aleatoria, 50, 10, repintarVista);
+        }else if(numero == 1)
+        {
+            premios = new Premios("Premio 2", 3000, posX_aleatoria, 150, 20, repintarVista);
+        }
+
+
+        //Pasar los modelos a la vista
 
         panel.setCorredores(jugador, computadora);
+        panel.setPremios(premios);
         panel.repaint();
-
     }
 
     public void IniciarCarrera()
     {
-        //Iniciamos los hilos de cada corredor
-        //Creamos los hilos basados en nuestros modelos de Runnable
+        //Iniciar los hilos de cada jugador
+        //Hilos basados ennuestros modelos runnable
+
         Thread hiloJugador = new Thread(jugador);
         Thread hiloComputadora = new Thread(computadora);
+        Thread hiloPremios = new Thread(premios);
 
         hiloJugador.start();
         hiloComputadora.start();
+        hiloPremios.start();
     }
 
-    public static void main(String[] args) {
-        //Creamos la ventana principal
-        javax.swing.JFrame ventana = new javax.swing.JFrame("Carrera de Escobas");
+    public static void main (String[] args)
+    {
+        //Crear la ventana principal
+        javax.swing.JFrame ventana = new javax.swing.JFrame();
         ventana.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(600, 300);
-        ventana.setLocationRelativeTo(null); //Centra la ventana
+        ventana.setSize(600, 200);
+        ventana.setLocationRelativeTo(null); // Lo centra
 
-        //Inicializamos el panel Vista y lo agregamos a la ventana
-        PanelPista panel = new PanelPista();
-        ventana.add(panel);
 
-        //Iniciamos el controlador
-        ControladorCarrera controlador = new ControladorCarrera(panel);
+        //Inicializamos el panel vista y lo agregamos a la ventana
+        PanelPista pista = new PanelPista();
+        ventana.add(pista);
 
-        //Hacemos visible la ventana antes de arrancar la carrera
+        //Inicializar el controlador
+        ControladorCarrera controlador = new ControladorCarrera(pista);
+
+        //Hacemos visible la ventana principal
         ventana.setVisible(true);
 
         //Preparamos e iniciamos la carrera
