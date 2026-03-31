@@ -1,59 +1,86 @@
-﻿# INTRODUCCION A LA PROGRAMACION Y COMPUTACION 1
-## Curso 0770
+﻿# Introduccion a la Programacion y Computacion 1
+## Curso 0770 - IPC1B (1er semestre 2026)
 
----
+Repositorio de ejemplos y practicas del curso. Aqui se incluyen proyectos en Java (consola y Swing) para reforzar fundamentos de programacion, POO, MVC e hilos.
 
-## Bienvenido
+## Proyectos incluidos
 
-Bienvenido al repositorio oficial del curso **Introduccion a la Programacion y Computacion 1**.
-Aqui encontraras ejemplos y ejercicios que se trabajan durante el semestre.
+### 1. PacmanTablero
+- Ruta: `PacmanTablero/`
+- Tipo: Java de consola (sin Maven)
+- Archivo principal: `PacmanTablero/src/TableroPacman.java`
+- Enfoque: arreglos bidimensionales, aleatoriedad, entrada por teclado y logica de movimiento.
 
-## Estructura Del Repositorio
+### 2. SistemaInventarioIPC1
+- Ruta: `SistemaInventarioIPC1/`
+- Tipo: Java + Maven + Swing
+- Punto de entrada: `SistemaInventarioIPC1/src/main/java/vista/VistaInventario.java`
+- Enfoque: Programacion Orientada a Objetos con patron MVC para un inventario basico.
+- Documentacion especifica: `SistemaInventarioIPC1/README.md`
+
+### 3. SnakeP2
+- Ruta: `SnakeP2/`
+- Tipo: Java Swing (estructura NetBeans)
+- Punto de entrada recomendado: `SnakeP2/src/codigo/SnakeP2.java`
+- Enfoque: juego de Snake con interfaz grafica, controlador y manejo de records.
+
+### 4. Sancarlista_Academy
+- Ruta: `Sancarlista_Academy/`
+- Tipo: Java + Maven + Swing
+- Punto de entrada: `Sancarlista_Academy/src/main/java/controlador/Main.java`
+- Enfoque: interfaz de academia, estructuras de datos (lista simple) y control de flujo en GUI.
+
+### 5. JuegoEscobas
+- Ruta: `JuegoEscobas/`
+- Tipo: Java + Maven + Swing
+- Punto de entrada: `JuegoEscobas/src/main/java/Controlador/ControladorCarrera.java`
+- Enfoque: simulacion visual con hilos usando el modelo de corredores y premios.
+
+## Estructura general
 
 ```text
 IPC1B_1S2026_Ejemplos/
 |- README.md
 |- PacmanTablero/
-|  |- src/
-|  |  |- TableroPacman.java
 |- SistemaInventarioIPC1/
-|  |- README.md
-|  |- src/
-|  |- pom.xml
+|- SnakeP2/
+|- Sancarlista_Academy/
+|- JuegoEscobas/
 ```
 
-## Ejemplos Disponibles
+## Requisitos
 
-### 1. PacmanTablero
+- JDK 17+ (recomendado: JDK 21 o superior)
+- Maven (para los proyectos que incluyen `pom.xml`)
+- IDE recomendado: NetBeans o IntelliJ IDEA
 
-- Carpeta: `PacmanTablero/`
-- Archivo principal: `src/TableroPacman.java`
-- Objetivo: practicar interfaces graficas y logica de tablero con Java.
-- Documentación: `TableroPacman/README.md`
+## Como ejecutar los ejemplos
 
-### 2. SistemaInventarioIPC1 
+### Opcion A: desde IDE
+1. Abrir la carpeta del proyecto que quieras ejecutar.
+2. Ejecutar su clase `main` correspondiente.
 
-- Carpeta: `SistemaInventarioIPC1/`
-- Tipo de proyecto: Java + Maven + Swing.
-- Objetivo: practicar POO y patron MVC (Modelo, Vista, Controlador) con un inventario.
-- Documentacion del ejemplo: `SistemaInventarioIPC1/README.md`
+### Opcion B: desde terminal
 
-### 3. Snake (Práctica del Aux)
-- Carpeta `SnakeP2/`
-- Tipo de proyecto: Java + Maven + Swing
-- Objetivo: que los estudiantes puedan ver un ejemplo completo de hilos.
+#### PacmanTablero (sin Maven)
+```powershell
+javac PacmanTablero/src/TableroPacman.java
+java -cp PacmanTablero/src TableroPacman
+```
 
-## Como Usar Este Repositorio
+#### Proyectos Maven (`SistemaInventarioIPC1`, `Sancarlista_Academy`, `JuegoEscobas`)
+Desde la carpeta del proyecto:
+```powershell
+mvn clean package
+```
+Luego ejecuta la clase principal desde el IDE o configura `exec.mainClass` en el `pom.xml` para usar `mvn exec:java`.
 
-1. Explora cada carpeta de ejemplo.
-2. Lee el `README.md` de cada proyecto antes de ejecutar.
-3. Revisa el codigo fuente y prueba cambios pequenos.
-4. Ejecuta los ejemplos desde tu IDE (NetBeans o IntelliJ) o por linea de comandos si aplica.
+## Nota del repositorio
+
+En algunas carpetas hay archivos generados por IDE/compilacion (`out/`, `target/`, `.iml`, `.jar`, logs). Son utiles para pruebas locales, pero no forman parte del codigo fuente principal.
 
 ## Autor
 
-**Fernando Jose Vicente Velasquez**
+Fernando Jose Vicente Velasquez
 
-## Curso: 2026 Semestre 1
-
-Ultima actualizacion: 26 de febrero de 2026
+Ultima actualizacion: 31 de marzo de 2026

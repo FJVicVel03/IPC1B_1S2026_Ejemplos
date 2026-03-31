@@ -1,23 +1,29 @@
 package controlador;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.JOptionPane;
 
+import modelo.Inscripcion;
 import modelo.ListaSimple;
 import modelo.Usuario;
 
 public class AppController {
     private ListaSimple<Usuario> usuarios;
+    private ListaSimple<Inscripcion> inscripcionesPendientes;
     private static final String ARCHIVO_DATOS = "datos.ser";
 
 
     public  AppController() {
         this.usuarios = new ListaSimple<>();
+        this.inscripcionesPendientes = new ListaSimple<>();
         cargarUsuarios();
         //Usuario Admin Inicial
         if(usuarios.size() == 0)
@@ -63,5 +69,45 @@ public class AppController {
             }
         }
         return null; //credenciales incorrectas
+    }
+
+    public synchronized int getInscripcionesPendientes()
+    {
+        return inscripcionesPendientes.size();
+    }
+
+    public synchronized Inscripcion procesarInscripcion()
+    {
+        if(inscripcionesPendientes.size() > 0) {
+            Inscripcion ins = inscripcionesPendientes.obtener(0);
+            inscripcionesPendientes.eliminar(0);
+            return ins;
+        }
+        return null;
+    }
+
+    public void cargarCSV(String path) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            boolean firstLine = true;
+            while ((line = br.readLine()) != null) {
+                if (firstLine) { // Saltar header si existe
+                    firstLine = false;
+                    continue;
+                }
+                String[] parts = line.split(",");
+                if (parts.length >= 3) {
+                    String nombre = parts[0].trim();
+                    String codigo = parts[1].trim();
+                    String fecha = parts[2].trim();
+                    synchronized (this) {
+                        inscripcionesPendientes.agregar(new Inscripcion(nombre, codigo, fecha));
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(null, "CSV cargado exitosamente.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar CSV: " + e.getMessage());
+        }
     }
 }

@@ -11,6 +11,7 @@ public class VentanaPrincipal extends JFrame{
     private AppController controlador;
     private CardLayout cardLayout; // Esto sirve para organizar varios paneles como si fueran cartas en uno solo, es útil, úsenlo
     private JPanel panelPrincipal;
+    private PanelAdministrador panelAdministrador;
 
 
 
@@ -23,6 +24,8 @@ public class VentanaPrincipal extends JFrame{
 
         //Registro de vistas
         panelPrincipal.add(new PanelLogin(this), "Login");
+        panelAdministrador = new PanelAdministrador(this);
+        panelPrincipal.add(panelAdministrador, "Administrador");
         //acá les faltaría a ustedes agregar los demás paneles
 
 
@@ -36,6 +39,9 @@ public class VentanaPrincipal extends JFrame{
     public void cambiarVista(String nombreVista)
     {
         cardLayout.show(panelPrincipal, nombreVista);
+        if("Administrador".equals(nombreVista)) {
+            panelAdministrador.iniciarHilos();
+        }
     }
 
     public AppController getControlador()

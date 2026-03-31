@@ -28,6 +28,16 @@ public class ListaSimple<T> implements Serializable {
         return (T) elementos[indice];
     }
 
+    public void eliminar(int indice) {
+        if (indice < 0 || indice >= contador) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+        for (int i = indice; i < contador - 1; i++) {
+            elementos[i] = elementos[i + 1];
+        }
+        elementos[--contador] = null; // Limpiar referencia
+    }
+
     public int size(){
         return contador;
     }

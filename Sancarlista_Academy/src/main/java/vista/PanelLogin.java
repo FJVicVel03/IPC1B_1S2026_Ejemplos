@@ -72,7 +72,7 @@ public class PanelLogin extends JPanel {
             //redirección según el rol
             if(usuario instanceof Usuario.Administrador) {
                 JOptionPane.showMessageDialog(this, "Usuario Administrador");
-                ventanaPrincipal.cambiarVista("ADMIN");
+                ventanaPrincipal.cambiarVista("Administrador");
 
             }
         }else {
